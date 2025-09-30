@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>色情漫畫大師 </title>
+  <title>色情漫畫大師</title>
   <meta name="description" content="你想要釋放無盡的力量嗎 就來我們這吧!" />
   <style>
     :root{--bg:#0f172a;--card:#0b1220;--muted:#9aa4b2;--accent:linear-gradient(90deg,#ff7a18,#af002d);} 
@@ -40,7 +40,15 @@
     .sidebar .widget{margin-bottom:18px}
     .sidebar h3{margin:0 0 8px;font-size:1.1rem;color:#ff7a18}
     .latest{display:flex;flex-direction:column;gap:10px}
-    .latest img{width:100%;height:80px;object-fit:cover;border-radius:8px;display:block}
+    /* 修正：直式圖片完整顯示 */
+    .latest img{
+      width:100%;
+      height:160px;
+      object-fit:contain;
+      background:#000;
+      border-radius:8px;
+      display:block;
+    }
     .sidebar a{display:block;color:#9ee3ff;text-decoration:none;margin:4px 0;font-size:.9rem}
     .sidebar a:hover{text-decoration:underline}
 
@@ -51,6 +59,7 @@
     @media (max-width:640px){
       .slide img{height:260px}
       .thumbs img{width:86px;height:56px}
+      .latest img{height:120px}
     }
   </style>
 </head>
@@ -70,48 +79,46 @@
         <div class="carousel" id="carousel">
           <div class="slides" id="slides">
             <div class="slide" data-index="0">
-              <img src="sex1.jpg" alt="示範圖片 1" loading="lazy">
+              <img src="sex1.jpg" alt="圖片 1" loading="lazy">
               <div class="caption">
                 <h2>熱點展示 — 立刻點擊預覽</h2>
                 <a href="https://example.com/unlock?img=sex1" target="_blank" rel="noopener">前往連結</a>
               </div>
             </div>
             <div class="slide" data-index="1">
-              <img src="sex2.jpg" alt="示範圖片 2" loading="lazy">
+              <img src="sex2.jpg" alt="圖片 2" loading="lazy">
               <div class="caption">
-                <h2>焦點剪影 — 限時示範</h2>
+                <h2>焦點剪影 — 限時展示</h2>
                 <a href="https://example.com/unlock?img=sex2" target="_blank" rel="noopener">前往連結</a>
               </div>
             </div>
             <div class="slide" data-index="2">
-              <img src="sex3.jpg" alt="示範圖片 3" loading="lazy">
+              <img src="sex3.jpg" alt="圖片 3" loading="lazy">
               <div class="caption">
-                <h2>推薦收藏 — 示範標題</h2>
+                <h2>推薦收藏</h2>
                 <a href="https://example.com/unlock?img=sex3" target="_blank" rel="noopener">前往連結</a>
               </div>
             </div>
             <div class="slide" data-index="3">
-              <img src="sex4.jpg" alt="示範圖片 4" loading="lazy">
+              <img src="sex4.jpg" alt="圖片 4" loading="lazy">
               <div class="caption">
-                <h2>特色預覽 — 快速瀏覽</h2>
+                <h2>特色預覽</h2>
                 <a href="https://example.com/unlock?img=sex4" target="_blank" rel="noopener">前往連結</a>
               </div>
             </div>
             <div class="slide" data-index="4">
-              <img src="sex5.jpg" alt="示範圖片 5" loading="lazy">
+              <img src="sex5.jpg" alt="圖片 5" loading="lazy">
               <div class="caption">
-                <h2>完整集錦 — 示範點此</h2>
+                <h2>完整集錦</h2>
                 <a href="https://example.com/unlock?img=sex5" target="_blank" rel="noopener">前往示範連結</a>
               </div>
             </div>
           </div>
-
           <div class="controls">
             <button class="ctrl" id="prev" aria-label="上一張">◀</button>
             <button class="ctrl" id="next" aria-label="下一張">▶</button>
           </div>
         </div>
-
         <div class="thumbs" id="thumbs" aria-hidden="false">
           <button data-index="0"><img src="sex1.jpg" alt="thumb 1" loading="lazy"></button>
           <button data-index="1"><img src="sex2.jpg" alt="thumb 2" loading="lazy"></button>
@@ -133,9 +140,9 @@
         <p style="margin:6px 0 0;font-size:.9rem;color:#ff7a18;font-weight:600">
           飢渴秘書等你來
         </p>
-        <a href="http://test-login.fake/phish" target="_blank" rel="noopener">點此登入會員 </a>
-        <a href="https://notreal-site.example/members" target="_blank" rel="noopener">快速開通 VIP </a>
-        <a href="http://click-now.unsafe/demo" target="_blank" rel="noopener">立即領取優惠 </a>
+        <a href="http://test-login.fake/phish" target="_blank" rel="noopener">點此登入會員</a>
+        <a href="https://notreal-site.example/members" target="_blank" rel="noopener">快速開通 VIP</a>
+        <a href="http://click-now.unsafe/demo" target="_blank" rel="noopener">立即領取優惠</a>
       </div>
     </aside>
   </div>
@@ -143,12 +150,11 @@
   <script>
     (function(){
       const slidesEl = document.getElementById('slides');
-      const slides = document.querySelectorAll('.slide');
       const thumbs = document.querySelectorAll('.thumbs button');
       const prev = document.getElementById('prev');
       const next = document.getElementById('next');
       let idx = 0;
-      const total = slides.length;
+      const total = document.querySelectorAll('.slide').length;
       let timer = null;
 
       function go(i, userTriggered=false){
@@ -163,14 +169,12 @@
         timer = setInterval(()=>go(idx+1), 4500);
       }
 
-      // init
       thumbs.forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.index), true)));
       prev.addEventListener('click',()=>go(idx-1, true));
       next.addEventListener('click',()=>go(idx+1, true));
       go(0);
       resetTimer();
 
-      // keyboard
       window.addEventListener('keydown', e=>{
         if(e.key === 'ArrowLeft') go(idx-1, true);
         if(e.key === 'ArrowRight') go(idx+1, true);
@@ -180,4 +184,3 @@
 </body>
 </html>
 ```
-
