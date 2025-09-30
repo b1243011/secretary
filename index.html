@@ -1,0 +1,182 @@
+```html
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>測試預覽頁 — 吸睛標題範例</title>
+  <meta name="description" content="示範用測試頁：圖片輪播、假連結與吸睛標題。請將 sex1.jpg ~ sex7.jpg 放在同一資料夾。" />
+  <style>
+    :root{--bg:#0f172a;--card:#0b1220;--muted:#9aa4b2;--accent:linear-gradient(90deg,#ff7a18,#af002d);} 
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans CJK TC', sans-serif;margin:0;background:var(--bg);color:#eef2f7;display:flex;justify-content:center;min-height:100vh;padding:24px}
+    .container{width:100%;max-width:1200px;display:grid;grid-template-columns:3fr 1fr;gap:16px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.15));border-radius:12px;padding:18px;box-shadow:0 6px 30px rgba(2,6,23,0.6)}
+    header{display:flex;align-items:center;gap:12px}
+    .badge{background:var(--accent);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
+    h1{margin:0;font-size:1.25rem}
+    p.lead{color:var(--muted);margin:6px 0 18px}
+
+    /* Carousel */
+    .carousel{position:relative;border-radius:8px;overflow:hidden;background:#111}
+    .slides{display:flex;transition:transform .45s ease;width:100%}
+    .slide{min-width:100%;position:relative}
+    .slide img{width:100%;height:480px;object-fit:contain;background:#000;display:block}
+    .caption{position:absolute;left:18px;bottom:18px;background:rgba(0,0,0,0.45);padding:10px 14px;border-radius:8px;backdrop-filter:blur(4px)}
+    .caption h2{margin:0;font-size:1rem}
+    .caption a{display:inline-block;margin-top:6px;padding:8px 12px;border-radius:6px;background:rgba(255,255,255,0.06);text-decoration:none;color:#fff;font-size:0.9rem}
+
+    /* controls */
+    .controls{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 6px}
+    button.ctrl{background:rgba(0,0,0,0.35);border:0;color:#fff;padding:10px;border-radius:999px;cursor:pointer}
+
+    /* thumbnails */
+    .thumbs{display:flex;gap:8px;margin-top:12px;overflow:auto}
+    .thumbs button{border:0;padding:0;background:transparent;border-radius:6px;cursor:pointer}
+    .thumbs img{width:120px;height:68px;object-fit:cover;border-radius:6px;display:block;opacity:.85}
+    .thumbs img.active{outline:3px solid rgba(255,255,255,0.08);opacity:1}
+
+    /* Sidebar */
+    .sidebar .widget{margin-bottom:18px}
+    .sidebar h3{margin:0 0 8px;font-size:1.1rem;color:#ff7a18}
+    .latest{display:flex;flex-direction:column;gap:10px}
+    .latest img{width:100%;height:80px;object-fit:cover;border-radius:8px;display:block}
+    .sidebar a{display:block;color:#9ee3ff;text-decoration:none;margin:4px 0;font-size:.9rem}
+    .sidebar a:hover{text-decoration:underline}
+
+    /* responsive */
+    @media (max-width:840px){
+      .container{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      .slide img{height:260px}
+      .thumbs img{width:86px;height:56px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Main content -->
+    <div class="card">
+      <header>
+        <div class="badge">🔥 Featured Preview</div>
+        <div style="flex:1">
+          <h1>精彩內容限時大放送! 秘書!學生!蘿莉!應有盡有!</h1>
+          <p class="lead">只有這裡才能擁有! 只要加入VIP會員種種好康等著你</p>
+        </div>
+      </header>
+
+      <main style="margin-top:12px">
+        <div class="carousel" id="carousel">
+          <div class="slides" id="slides">
+            <div class="slide" data-index="0">
+              <img src="sex1.jpg" alt="示範圖片 1" loading="lazy">
+              <div class="caption">
+                <h2>熱點展示 — 立刻點擊預覽</h2>
+                <a href="https://example.com/unlock?img=sex1" target="_blank" rel="noopener">前往連結</a>
+              </div>
+            </div>
+            <div class="slide" data-index="1">
+              <img src="sex2.jpg" alt="示範圖片 2" loading="lazy">
+              <div class="caption">
+                <h2>焦點剪影 — 限時示範</h2>
+                <a href="https://example.com/unlock?img=sex2" target="_blank" rel="noopener">前往連結</a>
+              </div>
+            </div>
+            <div class="slide" data-index="2">
+              <img src="sex3.jpg" alt="示範圖片 3" loading="lazy">
+              <div class="caption">
+                <h2>推薦收藏 — 示範標題</h2>
+                <a href="https://example.com/unlock?img=sex3" target="_blank" rel="noopener">前往連結</a>
+              </div>
+            </div>
+            <div class="slide" data-index="3">
+              <img src="sex4.jpg" alt="示範圖片 4" loading="lazy">
+              <div class="caption">
+                <h2>特色預覽 — 快速瀏覽</h2>
+                <a href="https://example.com/unlock?img=sex4" target="_blank" rel="noopener">前往連結</a>
+              </div>
+            </div>
+            <div class="slide" data-index="4">
+              <img src="sex5.jpg" alt="示範圖片 5" loading="lazy">
+              <div class="caption">
+                <h2>完整集錦 — 示範點此</h2>
+                <a href="https://example.com/unlock?img=sex5" target="_blank" rel="noopener">前往示範連結</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="ctrl" id="prev" aria-label="上一張">◀</button>
+            <button class="ctrl" id="next" aria-label="下一張">▶</button>
+          </div>
+        </div>
+
+        <div class="thumbs" id="thumbs" aria-hidden="false">
+          <button data-index="0"><img src="sex1.jpg" alt="thumb 1" loading="lazy"></button>
+          <button data-index="1"><img src="sex2.jpg" alt="thumb 2" loading="lazy"></button>
+          <button data-index="2"><img src="sex3.jpg" alt="thumb 3" loading="lazy"></button>
+          <button data-index="3"><img src="sex4.jpg" alt="thumb 4" loading="lazy"></button>
+          <button data-index="4"><img src="sex5.jpg" alt="thumb 5" loading="lazy"></button>
+        </div>
+      </main>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="widget">
+        <h3>📢 最新通知</h3>
+        <div class="latest">
+          <img src="sex6.jpg" alt="最新通知圖 6">
+          <img src="sex7.jpg" alt="最新通知圖 7">
+        </div>
+        <p style="margin:6px 0 0;font-size:.9rem;color:#ff7a18;font-weight:600">
+          飢渴秘書等你來
+        </p>
+        <a href="http://test-login.fake/phish" target="_blank" rel="noopener">點此登入會員 </a>
+        <a href="https://notreal-site.example/members" target="_blank" rel="noopener">快速開通 VIP </a>
+        <a href="http://click-now.unsafe/demo" target="_blank" rel="noopener">立即領取優惠 </a>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    (function(){
+      const slidesEl = document.getElementById('slides');
+      const slides = document.querySelectorAll('.slide');
+      const thumbs = document.querySelectorAll('.thumbs button');
+      const prev = document.getElementById('prev');
+      const next = document.getElementById('next');
+      let idx = 0;
+      const total = slides.length;
+      let timer = null;
+
+      function go(i, userTriggered=false){
+        idx = (i + total) % total;
+        slidesEl.style.transform = `translateX(${-idx*100}%)`;
+        thumbs.forEach((b)=>{b.firstElementChild.classList.toggle('active', Number(b.dataset.index)===idx)})
+        if(userTriggered){resetTimer()}
+      }
+
+      function resetTimer(){
+        if(timer) clearInterval(timer);
+        timer = setInterval(()=>go(idx+1), 4500);
+      }
+
+      // init
+      thumbs.forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.index), true)));
+      prev.addEventListener('click',()=>go(idx-1, true));
+      next.addEventListener('click',()=>go(idx+1, true));
+      go(0);
+      resetTimer();
+
+      // keyboard
+      window.addEventListener('keydown', e=>{
+        if(e.key === 'ArrowLeft') go(idx-1, true);
+        if(e.key === 'ArrowRight') go(idx+1, true);
+      });
+    })();
+  </script>
+</body>
+</html>
+```
